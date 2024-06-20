@@ -6,6 +6,10 @@ export const mailerFunction = async ({receiverEmail, emailType, userId}:any) => 
 
     try {
 
+        if (!receiverEmail) {
+            throw new Error("Receiver email is not defined");
+        }
+
         // CONFIGURING MAIL ACCORDING TO THE TYPE OF IT, EITHER VERIFY OR RESET PASSWORD
 
 
@@ -32,14 +36,14 @@ export const mailerFunction = async ({receiverEmail, emailType, userId}:any) => 
             host: "sandbox.smtp.mailtrap.io",
             port: 2525,
             auth: {
-              user: "c8f0a7a13524d0", //demo user
-              pass: "4976af3bb517c1"      // demo password
+              user: "c8f0a7a13524d0",
+              pass: "4976af3bb517c1"
             }
           });
 
         // OBJECT THAT CONTAINS ALL THE INFO AND DETAILS OF THE MAIL
         const mailDetails = {
-            from: "support@invisio.co", 
+            from: "poswalsameer2003@gmail.com", 
             to: receiverEmail, 
             subject: emailType === "VERIFY" ? "Verify your email" : " Reset your password " ,  
             html: ` <p> Click <a href="${process.env.DOMAIN}/${ emailType === "VERIFY" ? "verifyemail" : "resetpassword" }?token=${hashedToken}" >here</a> to ${ emailType === "VERIFY" ? "verify your email" : "reset your password" } or copy paste the link in your browser

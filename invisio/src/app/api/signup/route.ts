@@ -49,7 +49,7 @@ export const POST = async (request: NextRequest) => {
 
 
         // SENDING VERIFICTION EMAIL TO THE USER AFTER SIGNUP IS DONE
-        await mailerFunction({email, emailType: "VERIFY", userId: savedUpdatedUser._id});
+        await mailerFunction({receiverEmail: email, emailType: "VERIFY", userId: savedUpdatedUser._id});
 
         //SENDIND OK RESPONSE
         return NextResponse.json({
