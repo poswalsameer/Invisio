@@ -10,8 +10,10 @@ connect();
 export const POST = async (request: NextRequest) => {
 
     try {
-        const reqBodyData = request.json();
+        const reqBodyData = await request.json();
         const { username, email, password }:any = reqBodyData;
+        console.log(reqBodyData);
+        
 
         const findUser = await User.findOne({email});
 
