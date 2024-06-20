@@ -2,6 +2,7 @@ import { connect } from "@/dbConnect/dbConnect";
 import User from '../../../models/user.model';
 import { NextRequest, NextResponse } from 'next/server';
 import bcryptjs from 'bcryptjs';
+import { mailerFunction } from '../../../utils/mailer';
 
 //CONNECTION OF DB
 connect();
@@ -46,6 +47,14 @@ export const POST = async (request: NextRequest) => {
 
 
         // SENDING VERIFICTION EMAIL TO THE USER AFTER SIGNUP IS DONE
+        await mailerFunction({email, emailType: "VERIFY", userId: savedUpdatedUser._id});
+
+        //SENDIND OK RESPONSE
+        return NextResponse.json({
+            message: "User registered succesfully",
+            success: true,
+            status: 200
+        })
         
 
     } catch (error) {
