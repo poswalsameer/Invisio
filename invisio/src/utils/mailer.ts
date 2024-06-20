@@ -32,8 +32,8 @@ export const mailerFunction = async ({receiverEmail, emailType, userId}:any) => 
             host: "sandbox.smtp.mailtrap.io",
             port: 2525,
             auth: {
-              user: "c7b94ce8614e07",   // shouldn't be here, should be in env
-              pass: "38bcc3ea3fdf16"    // shouldn't be here, should be in env
+              user: "c8f0a7a13524d0", //demo user
+              pass: "4976af3bb517c1"      // demo password
             }
           });
 
@@ -49,14 +49,9 @@ export const mailerFunction = async ({receiverEmail, emailType, userId}:any) => 
         }
 
         //FUNCTION THROUGH WHICH MAIL IS SENT
-        const main = async () => {
+        const mailResponse = await transport.sendMail(mailDetails);
 
-            const mailResponse = await transport.sendMail(mailDetails);
-
-            return mailResponse;
-
-        }
-
+        return mailResponse;
 
     } catch (error) {
         console.log("There is some error while sending the mail:", error);
