@@ -1,4 +1,4 @@
-import { connect } from "@/dbConnect/dbConnect";
+import { connect } from "../../../dbConnect/dbConnect";
 import User from '../../../models/user.model';
 import { NextRequest, NextResponse } from 'next/server';
 import bcryptjs from 'bcryptjs';
@@ -62,7 +62,7 @@ export const POST = async (request: NextRequest) => {
     } catch (error) {
         
         return NextResponse.json(
-            {error},
+            {error: "cannot create the user"},
             {status: 500}
             );
     }

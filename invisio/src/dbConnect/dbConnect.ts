@@ -14,7 +14,7 @@ export const connect = () => {
         } )
 
         connection.on('error', (error) => {
-            console.log("MongoDB connection error" + error);
+            console.log("MongoDB connection error: " + error);
             process.exit();
         })
         
