@@ -12,11 +12,24 @@ const userSchema = new mongoose.Schema({
         unique: true,
         required: [true, "Email is required"]
     },
+    fullName: {
+        type: String,
+        required: [true, "Your name is required"]
+    },
     password: {
         type: String,
         unique: true,
         required: [true, "Password is required"]
     },
+    profilePhoto: {
+        type: String //CLOUDINARY URL
+    },
+    allPosts: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Video"
+        }
+    ],
     isVerified: {
         type: Boolean,
         default: false
